@@ -1,0 +1,150 @@
+{
+  "format": "time-slice-playbook",
+  "version": 1,
+  "hook": "generators not one-offs",
+  "seed": 1234,
+  "loop": [
+    "load identity from seed (once)",
+    "apply decay-pass for epoch",
+    "apply signal-field for epoch",
+    "frame the same camera",
+    "screenshot into screenshots/<epoch>/"
+  ],
+  "folders": {
+    "construction": "screenshots/construction",
+    "operational": "screenshots/operational",
+    "relic": "screenshots/relic"
+  },
+  "identity": {
+    "seed": 1234,
+    "structure": "a Dyson Swarm of collector petals",
+    "function": "siphoning plasma as structural feedstock",
+    "purpose": "governed as a foundry-state for a machine ecology",
+    "occupants": "organic crews",
+    "palette": "silver, glass, pinpoint-gold",
+    "tags": [
+      "foundry",
+      "orbital",
+      "organic",
+      "stellar",
+      "sublime",
+      "synthetic"
+    ],
+    "rig": {
+      "rings": 3,
+      "spokes": 10,
+      "modules": 18,
+      "core_radius": 0.1391,
+      "outer_radius": 0.8011,
+      "tether": false,
+      "petals": 6
+    }
+  },
+  "epochs": [
+    {
+      "epoch": "construction",
+      "label": "under construction",
+      "folder": "screenshots/construction",
+      "brief": "A 3D scene depicting: a Dyson Swarm of collector petals, siphoning plasma as structural feedstock, governed as a foundry-state for a machine ecology. Epoch: under construction. Occupancy: work crews and assembly drones on the open hull.",
+      "tags": [
+        "active",
+        "constructing",
+        "foundry",
+        "incomplete",
+        "orbital",
+        "organic",
+        "stellar",
+        "sublime",
+        "synthetic"
+      ],
+      "lighting": "warm amber worklights, welding arcs, and warning strobes against unfinished dark",
+      "occupancy": "work crews and assembly drones on the open hull",
+      "palette": "primer grey, hazard stripe, raw silver",
+      "decay": {
+        "amount": 0.1433,
+        "incomplete": 0.574,
+        "scaffold": 0.8698,
+        "oxidation": 0.0816,
+        "breach": 0.0112,
+        "debris": 0.1593
+      },
+      "signal": {
+        "density": 0.8335,
+        "coherence": 0.1865,
+        "amplitude": 0.9043,
+        "wavelength": 0.288,
+        "ghost": 0.0045
+      }
+    },
+    {
+      "epoch": "operational",
+      "label": "operational",
+      "folder": "screenshots/operational",
+      "brief": "A 3D scene depicting: a Dyson Swarm of collector petals, siphoning plasma as structural feedstock, governed as a foundry-state for a machine ecology. Epoch: operational. Occupancy: full census, systems live, traffic in the lanes.",
+      "tags": [
+        "active",
+        "complete",
+        "foundry",
+        "inhabited",
+        "orbital",
+        "organic",
+        "stellar",
+        "sublime",
+        "synthetic"
+      ],
+      "lighting": "designed running lights, cool corridor glow, controlled sun-side",
+      "occupancy": "full census, systems live, traffic in the lanes",
+      "palette": "silver, glass, pinpoint-gold",
+      "decay": {
+        "amount": 0.1715,
+        "incomplete": 0.0107,
+        "scaffold": 0.0,
+        "oxidation": 0.1073,
+        "breach": 0.0038,
+        "debris": 0.0866
+      },
+      "signal": {
+        "density": 0.7367,
+        "coherence": 0.8303,
+        "amplitude": 0.7108,
+        "wavelength": 0.5838,
+        "ghost": 0.0986
+      }
+    },
+    {
+      "epoch": "relic",
+      "label": "relic",
+      "folder": "screenshots/relic",
+      "brief": "A 3D scene depicting: a Dyson Swarm of collector petals, siphoning plasma as structural feedstock, governed as a foundry-state for a machine ecology. Epoch: relic. Occupancy: empty decks, scavenger traces, drones that forgot their purpose.",
+      "tags": [
+        "abandoned",
+        "derelict",
+        "foundry",
+        "orbital",
+        "organic",
+        "relic",
+        "stellar",
+        "sublime",
+        "synthetic"
+      ],
+      "lighting": "harsh unfiltered starlight, failing emergency flicker, long shadows",
+      "occupancy": "empty decks, scavenger traces, drones that forgot their purpose",
+      "palette": "oxidized silver, faded glass, deep shadow",
+      "decay": {
+        "amount": 0.8523,
+        "incomplete": 0.166,
+        "scaffold": 0.0144,
+        "oxidation": 0.8724,
+        "breach": 0.6579,
+        "debris": 0.7387
+      },
+      "signal": {
+        "density": 0.2009,
+        "coherence": 0.4042,
+        "amplitude": 0.259,
+        "wavelength": 0.8542,
+        "ghost": 0.8895
+      }
+    }
+  ]
+}

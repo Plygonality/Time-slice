@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "time-slice"
+version = "0.1.0"
+description = "Same seed, three epochs. One playbook, three screenshot folders. Proves generators are not one-offs."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Plygonality" }]
+keywords = [
+    "python",
+    "sci-fi",
+    "procedural",
+    "tech-art",
+    "blender",
+    "mcp",
+    "worldbuilding",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.6"]
+
+[project.scripts]
+time-slice = "time_slice.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Plygonality/Time-slice"
+Plygon-mcp = "https://github.com/Plygonality/Plygon-mcp"
+Hard-SciFi-idea-generator = "https://github.com/Plygonality/Hard-SciFi-idea-generator"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+time_slice = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
