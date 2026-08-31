@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Time-slice · seed 1234</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: #08090b; color: #e8e4dc;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    header {
+      padding: 28px 32px 12px; border-bottom: 1px solid #ffffff14;
+    }
+    header .kicker { letter-spacing: 0.22em; color: #ff6a1a; font-size: 11px; }
+    h1 { font-size: 22px; font-weight: 600; margin: 8px 0 6px; letter-spacing: 0.04em; }
+    .logline { color: #9aa3a8; font-size: 13px; max-width: 72ch; line-height: 1.45; }
+    .meta { margin-top: 10px; color: #6d767c; font-size: 11px; letter-spacing: 0.08em; }
+    main {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px; padding: 20px;
+    }
+    figure { margin: 0; background: #0d0e10; border: 1px solid #ffffff12; }
+    figcaption {
+      display: flex; justify-content: space-between; padding: 10px 12px;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      border-bottom: 1px solid #ffffff10;
+    }
+    figcaption .folder { color: #6d767c; letter-spacing: 0.04em; text-transform: none; }
+    object { width: 100%; height: auto; aspect-ratio: 720 / 960; display: block; }
+    @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="kicker">TIME-SLICE · ONE PLAYBOOK · THREE FOLDERS</div>
+    <h1>Same seed, three epochs</h1>
+    <p class="logline">a Dyson Swarm of collector petals, siphoning plasma as structural feedstock, governed as a foundry-state for a machine ecology</p>
+    <p class="meta">SEED 1234  ·  UNDER CONSTRUCTION / OPERATIONAL / RELIC  ·  GENERATORS NOT ONE-OFFS</p>
+  </header>
+  <main>
+    <figure data-epoch="construction">
+      <figcaption>
+        <span class="epoch">under construction</span>
+        <span class="folder">screenshots/construction</span>
+      </figcaption>
+      <object type="image/svg+xml" data="construction/preview.svg"></object>
+    </figure>
+    <figure data-epoch="operational">
+      <figcaption>
+        <span class="epoch">operational</span>
+        <span class="folder">screenshots/operational</span>
+      </figcaption>
+      <object type="image/svg+xml" data="operational/preview.svg"></object>
+    </figure>
+    <figure data-epoch="relic">
+      <figcaption>
+        <span class="epoch">relic</span>
+        <span class="folder">screenshots/relic</span>
+      </figcaption>
+      <object type="image/svg+xml" data="relic/preview.svg"></object>
+    </figure>
+  </main>
+</body>
+</html>

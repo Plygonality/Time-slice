@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+*.blend
+*.blend1
+.DS_Store
+.idea/
+.vscode/
+
+# MCP / DCC captures written over the preview SVGs
+screenshots/**/*.png
+screenshots/**/*.jpg
+screenshots/**/*.webp

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960"
+     role="img" data-epoch="relic" data-seed="1234">
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #edd5c4; }
+    .kicker { font-size: 10px; letter-spacing: 0.18em; fill: #c45c26; }
+    .title { font-size: 13px; letter-spacing: 0.28em; fill: #c45c26; }
+    .epoch { font-size: 22px; font-weight: 600; }
+    .seed { font-size: 12px; fill: #6a3a28; }
+    .logline { font-size: 11px; }
+    .meter-label { font-size: 10px; fill: #6a3a28; }
+    .tag text { font-size: 10px; fill: #edd5c4; }
+    .foot { font-size: 10px; fill: #6a3a28; letter-spacing: 0.08em; }
+  </style>
+  <rect width="100%" height="100%" fill="#100c0a"/>
+  <rect x="16" y="16" width="688" height="928" fill="none"
+        stroke="#c45c26" stroke-width="0.8" opacity="0.45"/>
+  <text class="title" x="36" y="48">TIME-SLICE</text>
+  <text class="seed" x="684" y="48" text-anchor="end">SEED 1234</text>
+  <text class="epoch" x="36" y="82">RELIC</text>
+  <text class="logline" x="36" y="108">a Dyson Swarm of collector petals, siphoning plasma as structural feedstock,</text>
+<text class="logline" x="36" y="122">governed as a foundry-state for a machine ecology</text>
+  <text x="36" y="138" class="kicker">BRIEF TAGS</text>
+<g class="tag" data-tag="abandoned"><rect x="36" y="140" width="88" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="44" y="153">abandoned</text></g>
+<g class="tag" data-tag="derelict"><rect x="132" y="140" width="80" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="140" y="153">derelict</text></g>
+<g class="tag" data-tag="foundry"><rect x="220" y="140" width="72" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="228" y="153">foundry</text></g>
+<g class="tag" data-tag="orbital"><rect x="300" y="140" width="72" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="308" y="153">orbital</text></g>
+<g class="tag" data-tag="organic"><rect x="380" y="140" width="72" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="388" y="153">organic</text></g>
+<g class="tag" data-tag="relic"><rect x="460" y="140" width="56" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="468" y="153">relic</text></g>
+<g class="tag" data-tag="stellar"><rect x="524" y="140" width="72" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="532" y="153">stellar</text></g>
+<g class="tag" data-tag="sublime"><rect x="604" y="140" width="72" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="612" y="153">sublime</text></g>
+<g class="tag" data-tag="synthetic"><rect x="36" y="162" width="88" height="18" rx="2" fill="#ffffff10" stroke="currentColor" stroke-width="0.6"/><text x="44" y="175">synthetic</text></g>
+  <text x="36" y="222" class="kicker">DECAY-PASS</text>
+<text x="36" y="249" class="meter-label">amount</text><rect x="128" y="240" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="decay-pass" data-key="amount" data-value="0.8523" x="128" y="240" width="178.99" height="8" rx="1" fill="#c45c26"/>
+<text x="36" y="267" class="meter-label">incomplete</text><rect x="128" y="258" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="decay-pass" data-key="incomplete" data-value="0.1660" x="128" y="258" width="34.86" height="8" rx="1" fill="#c45c26"/>
+<text x="36" y="285" class="meter-label">scaffold</text><rect x="128" y="276" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="decay-pass" data-key="scaffold" data-value="0.0144" x="128" y="276" width="3.03" height="8" rx="1" fill="#c45c26"/>
+<text x="36" y="303" class="meter-label">oxidation</text><rect x="128" y="294" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="decay-pass" data-key="oxidation" data-value="0.8724" x="128" y="294" width="183.21" height="8" rx="1" fill="#c45c26"/>
+<text x="36" y="321" class="meter-label">breach</text><rect x="128" y="312" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="decay-pass" data-key="breach" data-value="0.6579" x="128" y="312" width="138.16" height="8" rx="1" fill="#c45c26"/>
+<text x="36" y="339" class="meter-label">debris</text><rect x="128" y="330" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="decay-pass" data-key="debris" data-value="0.7387" x="128" y="330" width="155.13" height="8" rx="1" fill="#c45c26"/>
+<text x="384" y="222" class="kicker">SIGNAL-FIELD</text>
+<text x="384" y="249" class="meter-label">density</text><rect x="476" y="240" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="signal-field" data-key="density" data-value="0.2009" x="476" y="240" width="42.18" height="8" rx="1" fill="#c45c26"/>
+<text x="384" y="267" class="meter-label">coherence</text><rect x="476" y="258" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="signal-field" data-key="coherence" data-value="0.4042" x="476" y="258" width="84.89" height="8" rx="1" fill="#c45c26"/>
+<text x="384" y="285" class="meter-label">amplitude</text><rect x="476" y="276" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="signal-field" data-key="amplitude" data-value="0.2590" x="476" y="276" width="54.39" height="8" rx="1" fill="#c45c26"/>
+<text x="384" y="303" class="meter-label">wavelength</text><rect x="476" y="294" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="signal-field" data-key="wavelength" data-value="0.8542" x="476" y="294" width="179.39" height="8" rx="1" fill="#c45c26"/>
+<text x="384" y="321" class="meter-label">ghost</text><rect x="476" y="312" width="210" height="8" rx="1" fill="#00000055"/><rect class="meter" data-pass="signal-field" data-key="ghost" data-value="0.8895" x="476" y="312" width="186.79" height="8" rx="1" fill="#c45c26"/>
+  <g class="rig" data-seed="1234" data-rings="3" data-spokes="10" data-modules="18">
+<circle class="ring" cx="360.0" cy="560.0" r="89.94" fill="none" stroke="#8a5a44" stroke-width="1.6" opacity="0.55" stroke-dasharray="2 10"/>
+<circle class="ring" cx="360.0" cy="560.0" r="145.11" fill="none" stroke="#8a5a44" stroke-width="1.6" opacity="0.55" stroke-dasharray="2 10"/>
+<circle class="ring" cx="360.0" cy="560.0" r="200.28" fill="none" stroke="#8a5a44" stroke-width="1.6" opacity="0.55" stroke-dasharray="2 10"/>
+<line class="spoke" x1="394.77" y1="560.00" x2="560.28" y2="560.00" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="388.13" y1="580.44" x2="522.03" y2="677.72" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="370.74" y1="593.06" x2="421.89" y2="750.47" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="349.26" y1="593.06" x2="298.11" y2="750.47" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="331.87" y1="580.44" x2="197.97" y2="677.72" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="325.23" y1="560.00" x2="159.72" y2="560.00" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="331.87" y1="539.56" x2="197.97" y2="442.28" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="349.26" y1="526.94" x2="298.11" y2="369.53" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="370.74" y1="526.94" x2="421.89" y2="369.53" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<line class="spoke" x1="388.13" y1="539.56" x2="522.03" y2="442.28" stroke="#8a5a44" stroke-width="1.3" opacity="0.55"/>
+<path class="petal" d="M542.93,537.94 L596.32,560.00 L542.93,582.06" fill="none" stroke="#6a3a28" stroke-width="1"/>
+<path class="petal" d="M470.57,707.39 L478.16,764.66 L432.36,729.45" fill="none" stroke="#6a3a28" stroke-width="1"/>
+<path class="petal" d="M287.64,729.45 L241.84,764.66 L249.43,707.39" fill="none" stroke="#6a3a28" stroke-width="1"/>
+<path class="petal" d="M177.07,582.06 L123.68,560.00 L177.07,537.94" fill="none" stroke="#6a3a28" stroke-width="1"/>
+<path class="petal" d="M249.43,412.61 L241.84,355.34 L287.64,390.55" fill="none" stroke="#6a3a28" stroke-width="1"/>
+<path class="petal" d="M432.36,390.55 L478.16,355.34 L470.57,412.61" fill="none" stroke="#6a3a28" stroke-width="1"/>
+<g class="modules">
+<rect class="debris" data-index="0" x="568.56" y="563.71" width="7" height="5" transform="rotate(0.00 572.56 566.71)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="1" x="553.45" y="636.01" width="7" height="5" transform="rotate(20.00 557.45 639.01)" fill="#4a2a22" opacity="0.7"/>
+<rect class="module" data-index="2" x="507.92" y="685.23" width="11" height="7" transform="rotate(40.00 513.42 688.73)" fill="#c45c26" opacity="0.85"/>
+<rect class="module" data-index="3" x="454.64" y="729.94" width="11" height="7" transform="rotate(60.00 460.14 733.44)" fill="#c45c26" opacity="0.85"/>
+<rect class="debris" data-index="4" x="386.30" y="767.50" width="7" height="5" transform="rotate(80.00 390.30 770.50)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="5" x="312.48" y="765.17" width="7" height="5" transform="rotate(100.00 316.48 768.17)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="6" x="243.91" y="737.73" width="7" height="5" transform="rotate(120.00 247.91 740.73)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="7" x="188.85" y="688.49" width="7" height="5" transform="rotate(140.00 192.85 691.49)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="8" x="153.96" y="623.39" width="7" height="5" transform="rotate(160.00 157.96 626.39)" fill="#4a2a22" opacity="0.7"/>
+<rect class="module" data-index="9" x="154.22" y="556.50" width="11" height="7" transform="rotate(180.00 159.72 560.00)" fill="#c45c26" opacity="0.85"/>
+<rect class="debris" data-index="10" x="158.55" y="477.99" width="7" height="5" transform="rotate(200.00 162.55 480.99)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="11" x="197.48" y="415.23" width="7" height="5" transform="rotate(220.00 201.48 418.23)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="12" x="255.53" y="369.56" width="7" height="5" transform="rotate(240.00 259.53 372.56)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="13" x="325.70" y="346.50" width="7" height="5" transform="rotate(260.00 329.70 349.50)" fill="#4a2a22" opacity="0.7"/>
+<rect class="module" data-index="14" x="389.28" y="359.27" width="11" height="7" transform="rotate(280.00 394.78 362.77)" fill="#c45c26" opacity="0.85"/>
+<rect class="module" data-index="15" x="454.64" y="383.06" width="11" height="7" transform="rotate(300.00 460.14 386.56)" fill="#c45c26" opacity="0.85"/>
+<rect class="debris" data-index="16" x="523.15" y="425.51" width="7" height="5" transform="rotate(320.00 527.15 428.51)" fill="#4a2a22" opacity="0.7"/>
+<rect class="debris" data-index="17" x="558.04" y="490.61" width="7" height="5" transform="rotate(340.00 562.04 493.61)" fill="#4a2a22" opacity="0.7"/>
+</g>
+<circle class="core" cx="360.0" cy="560.0" r="19.12" fill="#00000040" stroke="#c45c26" stroke-width="1.4"/>
+<g class="signal-field">
+<circle class="ghost-signal" data-index="0" cx="449.94" cy="560.00" r="2.22" fill="#4a2a22" opacity="0.35"/>
+<circle class="signal" data-index="4" cx="457.09" cy="667.83" r="2.22" fill="#e08a5a" opacity="0.9"/>
+<circle class="signal" data-index="5" cx="460.14" cy="733.44" r="2.22" fill="#e08a5a" opacity="0.9"/>
+<circle class="ghost-signal" data-index="8" cx="339.07" cy="759.18" r="2.22" fill="#4a2a22" opacity="0.35"/>
+<circle class="signal" data-index="10" cx="287.45" cy="685.67" r="2.22" fill="#e08a5a" opacity="0.9"/>
+<circle class="ghost-signal" data-index="15" cx="270.06" cy="560.00" r="2.22" fill="#4a2a22" opacity="0.35"/>
+<circle class="signal" data-index="16" cx="218.07" cy="529.83" r="2.22" fill="#e08a5a" opacity="0.9"/>
+<circle class="ghost-signal" data-index="19" cx="262.91" cy="452.17" r="2.22" fill="#4a2a22" opacity="0.35"/>
+<circle class="signal" data-index="22" cx="344.83" cy="415.69" r="2.22" fill="#e08a5a" opacity="0.9"/>
+<circle class="ghost-signal" data-index="23" cx="380.93" cy="360.82" r="2.22" fill="#4a2a22" opacity="0.35"/>
+<circle class="signal" data-index="28" cx="492.56" cy="500.98" r="2.22" fill="#e08a5a" opacity="0.9"/>
+</g>
+</g>
+  <text class="foot" x="36" y="910">oxidized silver, faded glass, deep shadow</text>
+  <text class="foot" x="36" y="932">PLAYBOOK 3/3  ·  screenshots/relic</text>
+  <text class="foot" x="684" y="932" text-anchor="end">GENERATORS NOT ONE-OFFS</text>
+</svg>
