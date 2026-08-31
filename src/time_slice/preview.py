@@ -326,7 +326,8 @@ def render_svg(slice_: Slice) -> str:
   {tags_block}
   {meters}
   {rig}
-  <text class="foot" x="36" y="932">PLAYBOOK {epoch_n}/3  ·  {escape(slice_.folder)}  ·  {escape(slice_.palette)}</text>
+  <text class="foot" x="36" y="910">{escape(slice_.palette)}</text>
+  <text class="foot" x="36" y="932">PLAYBOOK {epoch_n}/3  ·  {escape(slice_.folder)}</text>
   <text class="foot" x="684" y="932" text-anchor="end">GENERATORS NOT ONE-OFFS</text>
 </svg>
 """

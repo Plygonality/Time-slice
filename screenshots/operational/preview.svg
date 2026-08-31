@@ -120,6 +120,7 @@
 <circle class="signal" data-index="29" cx="555.90" cy="518.36" r="3.31" fill="#7dffa3" opacity="0.9"/>
 </g>
 </g>
-  <text class="foot" x="36" y="932">PLAYBOOK 2/3  ·  screenshots/operational  ·  silver, glass, pinpoint-gold</text>
+  <text class="foot" x="36" y="910">silver, glass, pinpoint-gold</text>
+  <text class="foot" x="36" y="932">PLAYBOOK 2/3  ·  screenshots/operational</text>
   <text class="foot" x="684" y="932" text-anchor="end">GENERATORS NOT ONE-OFFS</text>
 </svg>
