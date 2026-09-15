@@ -36,7 +36,9 @@ time-slice = "time_slice.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/Plygonality/Time-slice"
+Habitat-kit = "https://github.com/Plygonality/Habitat-kit"
 Plygon-mcp = "https://github.com/Plygonality/Plygon-mcp"
+Blend-ci = "https://github.com/Plygonality/Blend-ci"
 Hard-SciFi-idea-generator = "https://github.com/Plygonality/Hard-SciFi-idea-generator"
 
 [tool.setuptools.packages.find]

@@ -1,8 +1,9 @@
 """One playbook, three screenshot folders.
 
-The playbook is the MCP loop written down: load identity once, then for each
-epoch apply decay-pass + signal-field, frame the same camera, and write a
-screenshot into that epoch's folder. The agent does not invent a new scene.
+The playbook is JSON Habitat-kit and Plygon-mcp already know how to apply.
+It does not invent generator logic: seed → identity, then decay-pass +
+signal-field per epoch. Load identity once, overlay each epoch, frame the
+same camera, write the expected screenshot.
 """
 
 from __future__ import annotations
@@ -15,6 +16,7 @@ from typing import Any
 from time_slice.epochs import (
     EPOCHS,
     SCREENSHOT_FOLDERS,
+    Slice,
     SliceSet,
     slice_seed,
 )
@@ -22,6 +24,7 @@ from time_slice.epochs import (
 FORMAT = "time-slice-playbook"
 VERSION = 1
 HOOK = "generators not one-offs"
+VIEWPORT_NAME = "viewport.png"
 
 LOOP: tuple[str, ...] = (
     "load identity from seed (once)",
@@ -30,6 +33,21 @@ LOOP: tuple[str, ...] = (
     "frame the same camera",
     "screenshot into screenshots/<epoch>/",
 )
+
+# Contract Habitat-kit / MCP read. Generator numbers come from slice_seed.
+REQUIRED_PLAYBOOK_KEYS: tuple[str, ...] = (
+    "format",
+    "seed",
+    "identity",
+    "epochs",
+)
+REQUIRED_EPOCH_KEYS: tuple[str, ...] = (
+    "seed",
+    "epoch",
+    "generator",
+    "expected_screenshot",
+)
+REQUIRED_GENERATOR_KEYS: tuple[str, ...] = ("decay", "signal")
 
 
 @dataclass(frozen=True)
@@ -49,11 +67,46 @@ class Playbook:
             "loop": list(LOOP),
             "folders": dict(SCREENSHOT_FOLDERS),
             "identity": self.slices.identity.to_dict(),
-            "epochs": [item.to_dict() for item in self.slices.slices],
+            "epochs": [_epoch_entry(item) for item in self.slices.slices],
         }
 
     def dumps(self) -> str:
         return json.dumps(self.to_dict(), indent=2, sort_keys=False) + "\n"
+
+
+def expected_screenshot_path(epoch: str, output_root: str = "screenshots") -> str:
+    """Repo-relative path Habitat-kit / MCP / Blend-ci should write."""
+    return f"{output_root}/{epoch}/{VIEWPORT_NAME}"
+
+
+def screenshot_folder_for(path: str | Path) -> Path:
+    """Directory that must exist for a playbook's expected screenshot path."""
+    target = Path(path)
+    return target if target.suffix == "" else target.parent
+
+
+def _epoch_entry(item: Slice) -> dict[str, Any]:
+    dump = item.to_dict()
+    generator = {
+        "decay": dump["decay"],
+        "signal": dump["signal"],
+    }
+    return {
+        "seed": item.identity.seed,
+        "epoch": dump["epoch"],
+        "label": dump["label"],
+        "folder": dump["folder"],
+        "expected_screenshot": expected_screenshot_path(item.epoch),
+        "generator": generator,
+        "brief": dump["brief"],
+        "tags": dump["tags"],
+        "lighting": dump["lighting"],
+        "occupancy": dump["occupancy"],
+        "palette": dump["palette"],
+        # Aliases so apply-script and Habitat-kit sockets keep reading the same keys.
+        "decay": dump["decay"],
+        "signal": dump["signal"],
+    }
 
 
 def build_playbook(seed: int) -> Playbook:
@@ -69,6 +122,90 @@ def write_playbook(seed: int, path: str | Path) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(build_playbook(seed).dumps(), encoding="utf-8")
     return target
+
+
+def epoch_records(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """Epoch objects from a combined playbook or a single-epoch JSON file."""
+    if "epochs" in data:
+        records = data["epochs"]
+        if not isinstance(records, list) or not records:
+            raise ValueError("playbook.epochs must be a non-empty list")
+        return records
+    return [data]
+
+
+def validate_playbook(data: dict[str, Any]) -> dict[str, Any]:
+    """Check the Habitat-kit / MCP contract. Does not generate a new seed."""
+    if not isinstance(data, dict):
+        raise ValueError("playbook must be a JSON object")
+    missing = [key for key in REQUIRED_PLAYBOOK_KEYS if key not in data]
+    if missing:
+        raise ValueError(f"playbook missing keys: {', '.join(missing)}")
+    if data.get("format") != FORMAT:
+        raise ValueError(f"playbook.format must be {FORMAT!r}")
+    seed = data["seed"]
+    if not isinstance(seed, int):
+        raise ValueError("playbook.seed must be an int")
+    identity = data.get("identity")
+    if isinstance(identity, dict) and identity.get("seed") not in (None, seed):
+        raise ValueError(
+            f"identity.seed {identity.get('seed')!r} != playbook.seed {seed}"
+        )
+
+    records = epoch_records(data)
+    seen: list[str] = []
+    seeds: list[int] = []
+    for item in records:
+        if not isinstance(item, dict):
+            raise ValueError("each playbook epoch must be a JSON object")
+        absent = [key for key in REQUIRED_EPOCH_KEYS if key not in item]
+        if absent:
+            raise ValueError(f"epoch missing keys: {', '.join(absent)}")
+        epoch = item["epoch"]
+        if epoch not in EPOCHS:
+            raise ValueError(
+                f"epoch must be one of {list(EPOCHS)}; got {epoch!r}"
+            )
+        if epoch in seen:
+            raise ValueError(f"duplicate epoch {epoch!r} in playbook set")
+        seen.append(epoch)
+        epoch_seed = item["seed"]
+        if not isinstance(epoch_seed, int):
+            raise ValueError("epoch.seed must be an int")
+        if epoch_seed != seed:
+            raise ValueError(
+                f"epoch {epoch!r} seed {epoch_seed} != set seed {seed}"
+            )
+        seeds.append(epoch_seed)
+        generator = item["generator"]
+        if not isinstance(generator, dict):
+            raise ValueError("epoch.generator must be a JSON object")
+        gen_missing = [key for key in REQUIRED_GENERATOR_KEYS if key not in generator]
+        if gen_missing:
+            raise ValueError(f"epoch.generator missing keys: {', '.join(gen_missing)}")
+        shot = item["expected_screenshot"]
+        if not isinstance(shot, str) or not shot:
+            raise ValueError("epoch.expected_screenshot must be a path string")
+
+    if len(set(seeds)) != 1:
+        raise ValueError("seeds must be identical across the three epochs for a set")
+    if set(seen) != set(EPOCHS):
+        raise ValueError(
+            f"playbook set must include {list(EPOCHS)}; got {seen}"
+        )
+    return data
+
+
+def load_playbook(path: str | Path) -> dict[str, Any]:
+    """Read committed playbook JSON. Does not re-run the generator."""
+    target = Path(path)
+    data = json.loads(target.read_text(encoding="utf-8"))
+    return validate_playbook(data)
+
+
+def iter_playbook_paths(root: str | Path) -> list[Path]:
+    directory = Path(root)
+    return sorted(path for path in directory.glob("*.json") if path.is_file())
 
 
 def to_apply_script(playbook: Playbook, output_root: str = "screenshots") -> str:
@@ -315,8 +452,9 @@ def _ensure_camera_and_light():
 
 def apply_epoch(epoch_id):
     spec = EPOCHS[epoch_id]
-    decay = spec["decay"]
-    signal = spec["signal"]
+    gen = spec.get("generator") or {{}}
+    decay = gen.get("decay") or spec["decay"]
+    signal = gen.get("signal") or spec["signal"]
     incomplete = float(decay["incomplete"])
     scaffold_amt = float(decay["scaffold"])
     breach = float(decay["breach"])

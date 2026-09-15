@@ -81,7 +81,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("dump", parents=[shared], help="JSON of identity + three epoch slices")
 
     p_play = sub.add_parser(
-        "playbook", parents=[shared], help="write the MCP playbook JSON"
+        "playbook", parents=[shared], help="write Habitat-kit / MCP playbook JSON"
     )
     p_play.add_argument("-o", "--output", default="-")
 

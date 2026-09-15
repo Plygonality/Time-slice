@@ -17,8 +17,10 @@ seed  →  identity (brief tags)
 
 | Role | Job |
 |---|---|
-| **This library** | Seed → identity. Epoch overlay. Decay-pass. Signal-field. Playbook. |
-| **[Plygon-mcp](https://github.com/Plygonality/Plygon-mcp)** | Apply the playbook in Blender and write the three folders. |
+| **This library** | Seed → identity. Epoch overlay. Decay-pass. Signal-field. Playbook JSON. |
+| **[Habitat-kit](https://github.com/Plygonality/Habitat-kit)** | Bind the playbook's generator params onto the habitat graph. Same seed, three Habitat Cuts. |
+| **[Plygon-mcp](https://github.com/Plygonality/Plygon-mcp)** | Apply the playbook (or Habitat-kit's apply-script) in Blender and write the three folders. |
+| **[Blend-ci](https://github.com/Plygonality/Blend-ci)** | Headless cook of those captures later. Do not Git LFS the PNGs. |
 | **[Hard Sci-Fi Idea Generator](https://github.com/Plygonality/Hard-SciFi-idea-generator)** | Sibling: a concept seed you can reuse as a Time-slice seed. |
 | **The `.blend`** | Working cache, never the source of truth. |
 
@@ -87,7 +89,7 @@ TIME-SLICE 1/3                                   seed 1234
 | `time-slice --seed N` | Print all three epoch briefs |
 | `time-slice --seed N --epoch relic` | One epoch |
 | `time-slice dump --seed N` | JSON of identity + slices |
-| `time-slice playbook --seed N -o playbooks/seed_N.json` | Write the MCP playbook |
+| `time-slice playbook --seed N -o playbooks/seed_N.json` | Write the Habitat-kit / MCP playbook |
 | `time-slice preview --seed N --out screenshots` | SVG triptych into the three folders |
 | `time-slice apply-script --seed N` | Self-contained `bpy` for Plygon-mcp |
 | `time-slice list-tags` | Identity tags the pools can produce |
@@ -102,25 +104,61 @@ python -m time_slice playbook --seed 1234 -o playbooks/seed_1234.json
 python -m time_slice apply-script --seed 1234 -o /tmp/time_slice_apply.py
 ```
 
-## MCP loop
+## Playbook JSON
 
-One playbook. The agent does not author a new scene per epoch.
+Each file in `playbooks/` is one **set**: the same seed replayed across the three epochs. Habitat-kit and MCP apply that file. They do not call a new generator.
+
+| Field | Where | Meaning |
+|---|---|---|
+| `seed` | set + every epoch | Identity lock. Must match across the three epochs. |
+| `epoch` | each epoch | `construction` \| `operational` \| `relic` |
+| `generator` | each epoch | `decay` + `signal` — numbers `slice_seed` already produced |
+| `expected_screenshot` | each epoch | `screenshots/<epoch>/viewport.png` |
+
+Canonical set: [`playbooks/seed_1234.json`](playbooks/seed_1234.json). Write one with the existing CLI. That command dumps the current generator; it does not add passes.
+
+```bash
+python -m time_slice playbook --seed 1234 -o playbooks/seed_1234.json
+```
+
+## How Habitat-kit or MCP applies a playbook
+
+No new identity per epoch. Load the JSON, set the sockets, shoot the path it names.
+
+**Habitat-kit** (the habitat graph; Time-slice only supplies epoch ids and generator params):
+
+1. Read `playbooks/seed_1234.json` (or import `time_slice.EPOCHS` / `slice_seed` — same numbers, Habitat-kit does not fork them).
+2. Bind `generator.decay` and `generator.signal` onto the habitat module sockets.
+3. `python -m habitat_kit apply-script --all-states` → Plygon-mcp `execute_blender_code`.
+4. Writes each epoch's `expected_screenshot` (`screenshots/<epoch>/viewport.png`).
+
+**Plygon-mcp** (this repo's stand-in, no Habitat-kit graphs):
 
 1. `time-slice playbook --seed 1234 -o playbooks/seed_1234.json`
-2. `time-slice apply-script --seed 1234` → Plygon-mcp `execute_blender_code`
-3. The script loads identity once, then for each epoch: **decay-pass** → **signal-field** → same camera → `screenshots/<epoch>/viewport.png`
+2. `time-slice apply-script --seed 1234` → `execute_blender_code`
+3. The script loads identity once, then for each epoch: **decay-pass** → **signal-field** → same camera → `expected_screenshot`
 
 The SVG preview is the no-DCC stand-in. When Blender is listening, `viewport.png` lands next to `preview.svg` in each folder.
 
 ```
 screenshots/
   gallery.html
-  construction/preview.svg   (+ viewport.png from MCP)
+  construction/preview.svg   (+ viewport.png from MCP / Blend-ci)
   operational/preview.svg
   relic/preview.svg
 ```
 
 Open `screenshots/gallery.html`. Three columns, one seed.
+
+## Screenshots
+
+`preview.svg` is committed, small, and rebuildable:
+
+```bash
+python -m time_slice preview --seed 1234 --out screenshots
+```
+
+`viewport.png` is the playbook's expected screenshot. Those rasters are **gitignored**: they are large, GPU-dependent, and not bit-stable across Blender versions. Do not add Git LFS. Prefer a [Blend-ci](https://github.com/Plygonality/Blend-ci) cook later (`blend-ci cook` against Habitat-kit graphs + this seed). `.gitattributes` marks the rasters as binary so a force-add still does not merge as text.
 
 ## Decay-pass / signal-field
 
@@ -153,12 +191,14 @@ UPDATE_GOLDENS=1 pytest tests/test_golden.py   # rewrite the seed-1234 fixture a
 
 Goldens live in `tests/goldens/`. If a generator change is intentional, update them. If it is not, the test failed for a reason.
 
+Committed playbooks in `playbooks/` must match `build_playbook(seed)`, name an existing `screenshots/<epoch>/` folder, and share one seed across the three epochs.
+
 ## Layout
 
 ```
 src/time_slice/     library
 examples/           canonical seed as Python
-playbooks/          MCP playbook JSON
-screenshots/        three epoch folders + gallery
+playbooks/          MCP / Habitat-kit playbook JSON (one set per seed)
+screenshots/        three epoch folders + gallery (SVG stand-in; PNG via Blend-ci)
 tests/goldens/      canonical dump for seed 1234
 ```
