@@ -29,7 +29,16 @@ from time_slice.epochs import (
     slice_seed,
 )
 from time_slice.identity import Identity, Rig, generate_identity
-from time_slice.playbook import Playbook, build_playbook, to_apply_script, write_playbook
+from time_slice.playbook import (
+    Playbook,
+    build_playbook,
+    expected_screenshot_path,
+    iter_playbook_paths,
+    load_playbook,
+    to_apply_script,
+    validate_playbook,
+    write_playbook,
+)
 from time_slice.preview import write_preview
 
 __all__ = [
@@ -44,11 +53,15 @@ __all__ = [
     "Slice",
     "SliceSet",
     "build_playbook",
+    "expected_screenshot_path",
     "generate_identity",
+    "iter_playbook_paths",
+    "load_playbook",
     "main",
     "make_slice",
     "slice_seed",
     "to_apply_script",
+    "validate_playbook",
     "write_playbook",
     "write_preview",
 ]

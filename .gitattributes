@@ -1,0 +1,10 @@
+# Raster Habitat Cuts are MCP / Blend-ci output, not Git LFS objects.
+# They are large, GPU-dependent, and not bit-stable across Blender versions.
+# Rebuild later with Blend-ci; until then they stay gitignored.
+# The committed stand-in is screenshots/<epoch>/preview.svg
+# (`time-slice preview --seed N --out screenshots`).
+screenshots/**/*.png binary
+screenshots/**/*.jpg binary
+screenshots/**/*.webp binary
+screenshots/**/*.svg text eol=lf
+playbooks/*.json text eol=lf

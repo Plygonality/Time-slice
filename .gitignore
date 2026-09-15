@@ -17,7 +17,8 @@ venv/
 .idea/
 .vscode/
 
-# MCP / DCC captures written over the preview SVGs
+# MCP / Blend-ci raster captures. Do not Git LFS these — rebuild via Blend-ci.
+# Committed stand-in: screenshots/<epoch>/preview.svg
 screenshots/**/*.png
 screenshots/**/*.jpg
 screenshots/**/*.webp
